@@ -1,0 +1,6 @@
+{
+  "id": "Demo.Modules.Module1",
+  "name": "Module1",
+  "isBundledWithHost": true,
+  "version": "1.0.0"
+}
