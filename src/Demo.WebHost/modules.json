@@ -3,5 +3,10 @@
     "id": "Demo.Modules.Module1",
     "isBundledWithHost": true,
     "version": "1.0.0"
+  },
+  {
+    "id": "Demo.Modules.Module2",
+    "isBundledWithHost": true,
+    "version": "1.0.0"
   }  
 ]
