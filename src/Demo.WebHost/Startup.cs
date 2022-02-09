@@ -39,13 +39,18 @@ namespace Demo.WebHost
             {
                 options.ViewLocationExpanders.Add(new ModuleViewLocationExpander());
             });
-
-            var sp = services.BuildServiceProvider();
-
-            var moduleInitializers = sp.GetServices<IModuleInitializer>();
-            foreach (var moduleInitializer in moduleInitializers)
+          
+            // Get module instance and register then run method in ModuleInitialier of each module
+            foreach (var module in GlobalConfiguration.Modules)
             {
-                moduleInitializer.ConfigureServices(services);
+                var moduleInitializerType = module.Assembly.GetTypes()
+                        .FirstOrDefault(t => typeof(IModuleInitializer).IsAssignableFrom(t));
+                if ((moduleInitializerType != null) && (moduleInitializerType != typeof(IModuleInitializer)))
+                {
+                    var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
+                    services.AddSingleton(typeof(IModuleInitializer), moduleInitializer);
+                    moduleInitializer.ConfigureServices(services);
+                }
             }
         }
 
@@ -59,36 +64,21 @@ namespace Demo.WebHost
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-            }
-            //app.UseStaticFiles();
+            }          
 
-            //app.UseRouting();
-
-            //app.UseAuthorization();
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //    app.UseEndpoints(endpoints =>
-            //    {
-            //        endpoints.MapControllerRoute(
-            //            name: "default",
-            //            pattern: "{module=module-1}/{controller=Home}/{action=Index}/{id?}");
-            //    });
-            //});
-
-            //// Adds endpoints defined in modules
-            //var modules = app.ApplicationServices.GetRequiredService<IEnumerable<Module>>();
-            //foreach (var module in modules)
-            //{
-            //    app.Map($"/{module.RoutePrefix}", builder =>
-            //    {
-            //        builder.UseRouting();
-            //        module.Startup.Configure(builder, env);
-            //    });
-            //}
             app.UseCustomizedStaticFiles(env);
-            app.UseCustomizedMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "areaRoute",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
 
             var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
             foreach (var moduleInitializer in moduleInitializers)
