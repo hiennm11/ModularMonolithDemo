@@ -9,4 +9,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Demo.Infrastructure\Demo.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
