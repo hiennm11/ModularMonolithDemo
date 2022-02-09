@@ -8,24 +8,7 @@ using System;
 namespace Demo.WebHost.Extensions
 {
     public static class ApplicationBuilderExtensions
-    {
-        public static IApplicationBuilder UseCustomizedMvc(this IApplicationBuilder app)
-        {
-            app.UseMvc(routes =>
-            {
-                //routes.Routes.Add(new UrlSlugRoute(routes.DefaultHandler));
-
-                routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    "default",
-                    "{controller=Home}/{action=Index}/{id?}");
-            });
-            return app;
-        }
-
+    {        
         public static IApplicationBuilder UseCustomizedStaticFiles(this IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
