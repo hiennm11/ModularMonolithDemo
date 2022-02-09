@@ -4,15 +4,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32127.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.WebHost", "src\Demo.WebHost\Demo.WebHost.csproj", "{E700662A-9AB8-494A-A5BB-255A224586D5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{25A0DC5F-40D9-4D20-A06D-3B1A5195FDAC} = {25A0DC5F-40D9-4D20-A06D-3B1A5195FDAC}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{61B3D13C-C910-463B-9907-92EE3F9B693F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Infrastructure", "src\Demo.Infrastructure\Demo.Infrastructure.csproj", "{A9CC28A8-AAC3-45AC-9AB6-4FE7F733BF02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Infrastructure", "src\Demo.Infrastructure\Demo.Infrastructure.csproj", "{A9CC28A8-AAC3-45AC-9AB6-4FE7F733BF02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Modules.Module1", "src\Modules\Demo.Modules.Module1\Demo.Modules.Module1.csproj", "{25A0DC5F-40D9-4D20-A06D-3B1A5195FDAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Modules.Module1", "src\Modules\Demo.Modules.Module1\Demo.Modules.Module1.csproj", "{25A0DC5F-40D9-4D20-A06D-3B1A5195FDAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Modules.Module2", "src\Modules\Demo.Modules.Module2\Demo.Modules.Module2.csproj", "{A4038DC4-EBFD-4F0D-A768-2F86DB262ED3}"
 EndProject
